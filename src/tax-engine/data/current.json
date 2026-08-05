@@ -1,0 +1,119 @@
+{
+  "version": "2026.0.1-seed",
+  "jurisdiction": "ES",
+  "taxYear": 2026,
+  "effectiveFrom": "2026-01-01",
+  "publishedAt": "2026-07-09",
+  "checksum": "seed-dataset-replace-with-etl-checksum",
+  "sources": [
+    {
+      "id": "aeat-irpf",
+      "name": "Agencia Tributaria - IRPF y retenciones",
+      "url": "https://sede.agenciatributaria.gob.es/",
+      "type": "html"
+    },
+    {
+      "id": "seg-social-cotizacion",
+      "name": "Seguridad Social - Cotización",
+      "url": "https://www.seg-social.es/",
+      "type": "html"
+    },
+    {
+      "id": "boe-cotizacion",
+      "name": "Boletín Oficial del Estado - Normas de cotización",
+      "url": "https://www.boe.es/",
+      "type": "boe"
+    }
+  ],
+  "stateBrackets": [
+    { "from": 0, "to": 12450, "rate": 0.095 },
+    { "from": 12450, "to": 20200, "rate": 0.12 },
+    { "from": 20200, "to": 35200, "rate": 0.15 },
+    { "from": 35200, "to": 60000, "rate": 0.185 },
+    { "from": 60000, "to": 300000, "rate": 0.225 },
+    { "from": 300000, "to": null, "rate": 0.245 }
+  ],
+  "regions": [
+    { "code": "AN", "name": "Andalucía", "fiscalRegime": "common", "brackets": [{ "from": 0, "to": 12450, "rate": 0.095 }, { "from": 12450, "to": 20200, "rate": 0.12 }, { "from": 20200, "to": 35200, "rate": 0.15 }, { "from": 35200, "to": 60000, "rate": 0.185 }, { "from": 60000, "to": 300000, "rate": 0.225 }, { "from": 300000, "to": null, "rate": 0.225 }], "deductionRules": [] },
+    { "code": "AR", "name": "Aragón", "fiscalRegime": "common", "brackets": [{ "from": 0, "to": 12450, "rate": 0.10 }, { "from": 12450, "to": 20200, "rate": 0.125 }, { "from": 20200, "to": 35200, "rate": 0.155 }, { "from": 35200, "to": 60000, "rate": 0.19 }, { "from": 60000, "to": 300000, "rate": 0.23 }, { "from": 300000, "to": null, "rate": 0.25 }], "deductionRules": [] },
+    { "code": "AS", "name": "Asturias", "fiscalRegime": "common", "brackets": [{ "from": 0, "to": 12450, "rate": 0.10 }, { "from": 12450, "to": 20200, "rate": 0.12 }, { "from": 20200, "to": 35200, "rate": 0.15 }, { "from": 35200, "to": 60000, "rate": 0.185 }, { "from": 60000, "to": 300000, "rate": 0.225 }, { "from": 300000, "to": null, "rate": 0.255 }], "deductionRules": [] },
+    { "code": "IB", "name": "Baleares", "fiscalRegime": "common", "brackets": [{ "from": 0, "to": 12450, "rate": 0.095 }, { "from": 12450, "to": 20200, "rate": 0.12 }, { "from": 20200, "to": 35200, "rate": 0.15 }, { "from": 35200, "to": 60000, "rate": 0.185 }, { "from": 60000, "to": 300000, "rate": 0.225 }, { "from": 300000, "to": null, "rate": 0.24 }], "deductionRules": [] },
+    { "code": "CN", "name": "Canarias", "fiscalRegime": "common", "brackets": [{ "from": 0, "to": 12450, "rate": 0.09 }, { "from": 12450, "to": 20200, "rate": 0.115 }, { "from": 20200, "to": 35200, "rate": 0.14 }, { "from": 35200, "to": 60000, "rate": 0.18 }, { "from": 60000, "to": 300000, "rate": 0.22 }, { "from": 300000, "to": null, "rate": 0.24 }], "deductionRules": [] },
+    { "code": "CB", "name": "Cantabria", "fiscalRegime": "common", "brackets": [{ "from": 0, "to": 12450, "rate": 0.095 }, { "from": 12450, "to": 20200, "rate": 0.12 }, { "from": 20200, "to": 35200, "rate": 0.15 }, { "from": 35200, "to": 60000, "rate": 0.185 }, { "from": 60000, "to": 300000, "rate": 0.225 }, { "from": 300000, "to": null, "rate": 0.255 }], "deductionRules": [] },
+    { "code": "CM", "name": "Castilla-La Mancha", "fiscalRegime": "common", "brackets": [{ "from": 0, "to": 12450, "rate": 0.095 }, { "from": 12450, "to": 20200, "rate": 0.12 }, { "from": 20200, "to": 35200, "rate": 0.15 }, { "from": 35200, "to": 60000, "rate": 0.185 }, { "from": 60000, "to": 300000, "rate": 0.225 }, { "from": 300000, "to": null, "rate": 0.225 }], "deductionRules": [] },
+    { "code": "CL", "name": "Castilla y León", "fiscalRegime": "common", "brackets": [{ "from": 0, "to": 12450, "rate": 0.095 }, { "from": 12450, "to": 20200, "rate": 0.12 }, { "from": 20200, "to": 35200, "rate": 0.15 }, { "from": 35200, "to": 60000, "rate": 0.185 }, { "from": 60000, "to": 300000, "rate": 0.225 }, { "from": 300000, "to": null, "rate": 0.225 }], "deductionRules": [] },
+    { "code": "CT", "name": "Cataluña", "fiscalRegime": "common", "brackets": [{ "from": 0, "to": 12450, "rate": 0.105 }, { "from": 12450, "to": 20200, "rate": 0.12 }, { "from": 20200, "to": 35200, "rate": 0.15 }, { "from": 35200, "to": 60000, "rate": 0.185 }, { "from": 60000, "to": 300000, "rate": 0.235 }, { "from": 300000, "to": null, "rate": 0.255 }], "deductionRules": [] },
+    { "code": "VC", "name": "Comunidad Valenciana", "fiscalRegime": "common", "brackets": [{ "from": 0, "to": 12450, "rate": 0.10 }, { "from": 12450, "to": 20200, "rate": 0.12 }, { "from": 20200, "to": 35200, "rate": 0.15 }, { "from": 35200, "to": 60000, "rate": 0.19 }, { "from": 60000, "to": 300000, "rate": 0.245 }, { "from": 300000, "to": null, "rate": 0.295 }], "deductionRules": [{ "id": "vc-family-large", "label": "Familia numerosa", "amount": 300, "condition": { "familyLarge": true } }] },
+    { "code": "EX", "name": "Extremadura", "fiscalRegime": "common", "brackets": [{ "from": 0, "to": 12450, "rate": 0.095 }, { "from": 12450, "to": 20200, "rate": 0.125 }, { "from": 20200, "to": 35200, "rate": 0.155 }, { "from": 35200, "to": 60000, "rate": 0.19 }, { "from": 60000, "to": 300000, "rate": 0.235 }, { "from": 300000, "to": null, "rate": 0.25 }], "deductionRules": [] },
+    { "code": "GA", "name": "Galicia", "fiscalRegime": "common", "brackets": [{ "from": 0, "to": 12450, "rate": 0.09 }, { "from": 12450, "to": 20200, "rate": 0.1165 }, { "from": 20200, "to": 35200, "rate": 0.149 }, { "from": 35200, "to": 60000, "rate": 0.184 }, { "from": 60000, "to": 300000, "rate": 0.225 }, { "from": 300000, "to": null, "rate": 0.225 }], "deductionRules": [] },
+    { "code": "MD", "name": "Madrid", "fiscalRegime": "common", "brackets": [{ "from": 0, "to": 12450, "rate": 0.085 }, { "from": 12450, "to": 20200, "rate": 0.107 }, { "from": 20200, "to": 35200, "rate": 0.128 }, { "from": 35200, "to": 60000, "rate": 0.174 }, { "from": 60000, "to": 300000, "rate": 0.205 }, { "from": 300000, "to": null, "rate": 0.205 }], "deductionRules": [] },
+    { "code": "MC", "name": "Murcia", "fiscalRegime": "common", "brackets": [{ "from": 0, "to": 12450, "rate": 0.095 }, { "from": 12450, "to": 20200, "rate": 0.12 }, { "from": 20200, "to": 35200, "rate": 0.15 }, { "from": 35200, "to": 60000, "rate": 0.185 }, { "from": 60000, "to": 300000, "rate": 0.225 }, { "from": 300000, "to": null, "rate": 0.225 }], "deductionRules": [] },
+    { "code": "NC", "name": "Navarra", "fiscalRegime": "foral", "brackets": [{ "from": 0, "to": 12450, "rate": 0.19 }, { "from": 12450, "to": 20200, "rate": 0.24 }, { "from": 20200, "to": 35200, "rate": 0.30 }, { "from": 35200, "to": 60000, "rate": 0.37 }, { "from": 60000, "to": 300000, "rate": 0.45 }, { "from": 300000, "to": null, "rate": 0.49 }], "deductionRules": [] },
+    { "code": "PV", "name": "País Vasco", "fiscalRegime": "foral", "brackets": [{ "from": 0, "to": 12450, "rate": 0.19 }, { "from": 12450, "to": 20200, "rate": 0.24 }, { "from": 20200, "to": 35200, "rate": 0.30 }, { "from": 35200, "to": 60000, "rate": 0.37 }, { "from": 60000, "to": 300000, "rate": 0.45 }, { "from": 300000, "to": null, "rate": 0.49 }], "deductionRules": [] },
+    { "code": "RI", "name": "La Rioja", "fiscalRegime": "common", "brackets": [{ "from": 0, "to": 12450, "rate": 0.095 }, { "from": 12450, "to": 20200, "rate": 0.12 }, { "from": 20200, "to": 35200, "rate": 0.15 }, { "from": 35200, "to": 60000, "rate": 0.185 }, { "from": 60000, "to": 300000, "rate": 0.225 }, { "from": 300000, "to": null, "rate": 0.255 }], "deductionRules": [] },
+    { "code": "CE", "name": "Ceuta", "fiscalRegime": "special-city", "brackets": [{ "from": 0, "to": 12450, "rate": 0.095 }, { "from": 12450, "to": 20200, "rate": 0.12 }, { "from": 20200, "to": 35200, "rate": 0.15 }, { "from": 35200, "to": 60000, "rate": 0.185 }, { "from": 60000, "to": 300000, "rate": 0.225 }, { "from": 300000, "to": null, "rate": 0.225 }], "deductionRules": [] },
+    { "code": "ML", "name": "Melilla", "fiscalRegime": "special-city", "brackets": [{ "from": 0, "to": 12450, "rate": 0.095 }, { "from": 12450, "to": 20200, "rate": 0.12 }, { "from": 20200, "to": 35200, "rate": 0.15 }, { "from": 35200, "to": 60000, "rate": 0.185 }, { "from": 60000, "to": 300000, "rate": 0.225 }, { "from": 300000, "to": null, "rate": 0.225 }], "deductionRules": [] }
+  ],
+  "personalAllowances": {
+    "personal": 5550,
+    "ageOver65": 1150,
+    "ageOver75": 1400,
+    "children": [2400, 2700, 4000, 4500],
+    "childUnder3": 2800,
+    "ascendantOver65": 1150,
+    "ascendantOver75": 1400,
+    "disability": { "none": 0, "gte33": 3000, "gte65": 9000 },
+    "mobilityGeographic": 2000
+  },
+  "contributionRates": {
+    "employee": {
+      "commonContingencies": 0.047,
+      "training": 0.001,
+      "mei": 0.0015
+    },
+    "employer": {
+      "commonContingencies": 0.236,
+      "training": 0.006,
+      "fogasa": 0.002,
+      "mei": 0.0075
+    },
+    "overtime": {
+      "structuralEmployee": 0.047,
+      "structuralEmployer": 0.236,
+      "forceMajeureEmployee": 0.02,
+      "forceMajeureEmployer": 0.12
+    },
+    "unemployment": {
+      "indefinite": { "employee": 0.0155, "employer": 0.055 },
+      "temporary": { "employee": 0.016, "employer": 0.067 },
+      "training": { "employee": 0.0155, "employer": 0.055 },
+      "internship": { "employee": 0.0155, "employer": 0.055 }
+    }
+  },
+  "contributionBases": {
+    "monthlyMax": 5101.2,
+    "monthlyMinByGroup": {
+      "1": 1847.4,
+      "2": 1532.1,
+      "3": 1332.9,
+      "4": 1323,
+      "5": 1323,
+      "6": 1323,
+      "7": 1323,
+      "8": 44.1,
+      "9": 44.1,
+      "10": 44.1,
+      "11": 44.1
+    }
+  },
+  "smi": { "annual": 17094, "monthly14": 1221 },
+  "flexibleCompensationExemptions": {
+    "restaurant": { "annualLimit": null, "monthlyLimit": 242, "taxable": false },
+    "medicalInsurance": { "annualLimit": 500, "taxable": false },
+    "childcare": { "annualLimit": null, "taxable": false },
+    "transport": { "annualLimit": 1500, "taxable": false },
+    "training": { "annualLimit": null, "taxable": false },
+    "pensionPlan": { "annualLimit": 1500, "taxable": false },
+    "other": { "annualLimit": null, "taxable": true }
+  }
+}
