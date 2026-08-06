@@ -33,7 +33,13 @@ El motor fiscal no contiene porcentajes legales. Consume `TaxDataset` desde `src
 
 ## Desarrollo
 
+### Requisitos
+
+- Node.js 24 LTS
+- pnpm
+
 ```bash
+nvm use
 pnpm install
 pnpm dev
 ```
