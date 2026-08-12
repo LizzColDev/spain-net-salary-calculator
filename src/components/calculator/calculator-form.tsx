@@ -2,13 +2,13 @@
 
 import * as React from "react";
 import dynamic from "next/dynamic";
+import { Field } from "./field";
 import { Copy, Download, FileSpreadsheet, Link, Moon, Plus, Save, Sun } from "lucide-react";
 import { useTheme } from "next-themes";
 import { useQuery } from "@tanstack/react-query";
 import { motion } from "framer-motion";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
-import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
 import { Slider } from "@/components/ui/slider";
@@ -45,7 +45,7 @@ function toBool(value: string) {
   return value === "true";
 }
 
-function numberValue(value: string, fallback = 0) {
+export function numberValue(value: string, fallback = 0) {
   const next = Number(value);
   return Number.isFinite(next) ? next : fallback;
 }
@@ -59,37 +59,6 @@ function updateAtPath<T>(object: T, path: string, value: unknown): T {
   });
   cursor[keys[keys.length - 1]] = value;
   return clone;
-}
-
-function Field({
-  label,
-  value,
-  type = "number",
-  onChange,
-  suffix,
-  min,
-  max,
-  step = "1"
-}: {
-  label: string;
-  value: string | number;
-  type?: string;
-  onChange: (value: string) => void;
-  suffix?: string;
-  min?: number;
-  max?: number;
-  step?: string;
-}) {
-  const id = React.useId();
-  return (
-    <div className="space-y-2">
-      <Label htmlFor={id}>{label}</Label>
-      <div className="relative">
-        <Input id={id} type={type} value={value} min={min} max={max} step={step} onChange={(event) => onChange(event.target.value)} className={suffix ? "pr-10" : ""} />
-        {suffix ? <span className="absolute right-3 top-2.5 text-sm text-muted-foreground">{suffix}</span> : null}
-      </div>
-    </div>
-  );
 }
 
 function BoolSelect({ label, value, onChange }: { label: string; value: boolean; onChange: (value: boolean) => void }) {
