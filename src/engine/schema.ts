@@ -1,6 +1,7 @@
 import { z } from "zod";
 
 const money = z.coerce.number().finite().min(0).max(10_000_000);
+const positiveMoney = z.coerce.number().finite().gt(0).max(10_000_000);
 const ratio = z.coerce.number().finite().min(0).max(1);
 
 export const compensationItemSchema = z.object({
@@ -28,8 +29,8 @@ export const salaryScenarioSchema = z.object({
     singleParent: z.boolean()
   }),
   job: z.object({
-    grossAnnual: money,
-    grossMonthly: money.optional(),
+    grossAnnual: positiveMoney,
+    grossMonthly: positiveMoney.optional(),
     payments: z.coerce.number().int().min(1).max(24),
     contractType: z.enum(["indefinite", "temporary", "training", "internship"]),
     workingTimeRatio: ratio,

@@ -15,6 +15,7 @@ import { Slider } from "@/components/ui/slider";
 import { Separator } from "@/components/ui/separator";
 import { BreakdownTable } from "./breakdown-table";
 import { defaultScenario } from "./default-scenario";
+import { validateScenario } from "./validation";
 import { ResultCards } from "./result-cards";
 import { calculateSalary, fetchTaxRates } from "@/lib/api";
 import { euro, euroPrecise } from "@/lib/utils";
@@ -79,12 +80,14 @@ function ScenarioEditor({
   title,
   scenario,
   onChange,
-  compact = false
+  compact = false,
+  validationErrors = {}
 }: {
   title: string;
   scenario: SalaryScenarioInput;
   onChange: (scenario: SalaryScenarioInput) => void;
   compact?: boolean;
+  validationErrors?: Record<string, string>;
 }) {
   const { data } = useQuery({ queryKey: ["tax-rates"], queryFn: fetchTaxRates });
   const set = React.useCallback((path: string, value: unknown) => onChange(updateAtPath(scenario, path, value)), [onChange, scenario]);
@@ -103,8 +106,22 @@ function ScenarioEditor({
       </CardHeader>
       <CardContent className="space-y-6">
         <section className="grid gap-4 sm:grid-cols-2 xl:grid-cols-3">
-          <Field label="Salario bruto anual" value={scenario.job.grossAnnual} suffix="€" step="100" onChange={(v) => set("job.grossAnnual", numberValue(v))} />
-          <Field label="Pagas" value={scenario.job.payments} min={1} max={24} onChange={(v) => set("job.payments", numberValue(v, 12))} />
+          <Field label="Salario bruto anual" value={scenario.job.grossAnnual} suffix="€" step="100" onChange={(v) => set("job.grossAnnual", numberValue(v))} error={validationErrors["job.grossAnnual"]} />
+          <div className="space-y-2">
+            <Label>Pagas</Label>
+              <Select
+                value={String(scenario.job.payments)}
+                onValueChange={(v) => set("job.payments", Number(v))}
+              >
+                <SelectTrigger>
+                  <SelectValue />
+                </SelectTrigger>
+                <SelectContent>
+                  <SelectItem value="12">12 pagas</SelectItem>
+                  <SelectItem value="14">14 pagas</SelectItem>
+                </SelectContent>
+              </Select>
+            </div>
           <div className="space-y-2">
             <Label>Comunidad autónoma</Label>
             <Select value={scenario.job.region} onValueChange={(v) => set("job.region", v)}>
@@ -126,7 +143,7 @@ function ScenarioEditor({
               </SelectContent>
             </Select>
           </div>
-          <Field label="Horas semanales" value={scenario.job.weeklyHours} min={1} max={80} onChange={(v) => set("job.weeklyHours", numberValue(v, 40))} />
+          <Field label="Horas semanales" value={scenario.job.weeklyHours} min={1} max={80} onChange={(v) => set("job.weeklyHours", numberValue(v, 40))} error={validationErrors["job.weeklyHours"]} />
           <Field label="Grupo cotización" value={scenario.job.contributionGroup} type="text" onChange={(v) => set("job.contributionGroup", v)} />
         </section>
 
@@ -142,7 +159,7 @@ function ScenarioEditor({
           <>
             <Separator />
             <section className="grid gap-4 sm:grid-cols-2 xl:grid-cols-4">
-              <Field label="Edad" value={scenario.personal.age} min={16} max={100} onChange={(v) => set("personal.age", numberValue(v, 35))} />
+              <Field label="Edad" value={scenario.personal.age} min={16} max={100} error={validationErrors["personal.age"]} onChange={(v) => set("personal.age", numberValue(v, 35))} />
               <Field label="Hijos" value={scenario.personal.children} min={0} max={20} onChange={(v) => set("personal.children", numberValue(v))} />
               <Field label="Hijos menores de 3" value={scenario.personal.childrenUnder3} min={0} max={20} onChange={(v) => set("personal.childrenUnder3", numberValue(v))} />
               <Field label="Ascendientes a cargo" value={scenario.personal.ascendants} min={0} max={10} onChange={(v) => set("personal.ascendants", numberValue(v))} />
@@ -205,11 +222,25 @@ export function CalculatorForm() {
   const [compare, setCompare] = React.useState(false);
   const debouncedScenarioA = useDebouncedValue(scenarioA, 180);
   const debouncedScenarioB = useDebouncedValue(scenarioB, 180);
+  const validationErrorsA = React.useMemo(
+    () => validateScenario(debouncedScenarioA),
+    [debouncedScenarioA]
+  );
+
+  const validationErrorsB = React.useMemo(
+    () => validateScenario(debouncedScenarioB),
+    [debouncedScenarioB]
+  );
+
+  const hasValidationErrors =
+    Object.keys(validationErrorsA).length > 0 ||
+    (compare && Object.keys(validationErrorsB).length > 0);
 
   const query = useQuery<ResultPayload>({
     queryKey: ["calculate", debouncedScenarioA, debouncedScenarioB, compare],
     queryFn: () => calculateSalary({ scenarioA: debouncedScenarioA, scenarioB: compare ? debouncedScenarioB : undefined }),
-    staleTime: 5_000
+    staleTime: 5_000,
+    enabled: !hasValidationErrors
   });
 
   React.useEffect(() => {
@@ -329,8 +360,8 @@ export function CalculatorForm() {
 
       <div className="grid gap-6 xl:grid-cols-[minmax(0,1.1fr)_minmax(360px,0.9fr)]">
         <div className="space-y-6">
-          <ScenarioEditor title="Escenario A" scenario={scenarioA} onChange={setScenarioA} />
-          {compare ? <ScenarioEditor title="Escenario B" scenario={scenarioB} onChange={setScenarioB} compact /> : null}
+          <ScenarioEditor title="Escenario A" scenario={scenarioA} onChange={setScenarioA} validationErrors={validationErrorsA} />
+          {compare ? <ScenarioEditor title="Escenario B" scenario={scenarioB} onChange={setScenarioB} compact validationErrors={validationErrorsB}/> : null}
         </div>
         <div className="space-y-6 xl:sticky xl:top-6 xl:self-start">
           <Card>

@@ -13,6 +13,7 @@ type FieldProps = {
   min?: number;
   max?: number;
   step?: string;
+  error?: string;
 };
 
 export function Field({
@@ -23,9 +24,10 @@ export function Field({
   suffix,
   min,
   max,
-  step = "1"
+  step = "1",
+  error
 }: FieldProps) {
-  
+
   const id = React.useId();
   const [inputValue, setInputValue] = React.useState(String(value));
 
@@ -36,11 +38,8 @@ export function Field({
   }, [value]);
 
   const handleChange = (nextValue: string) => {
-    setInputValue(nextValue);
-
-    if (nextValue !== "") {
-      onChange(nextValue);
-    }
+  setInputValue(nextValue);
+  onChange(nextValue);
   };
 
   return (
@@ -63,6 +62,11 @@ export function Field({
           </span>
         ) : null}
       </div>
+      {error ? (
+        <p className="text-sm text-destructive" role="alert">
+          {error}
+        </p>
+      ) : null}
     </div>
   );
 }
